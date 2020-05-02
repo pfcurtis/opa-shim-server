@@ -1,0 +1,9 @@
+# Forward authentication to authserver.com
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: dhcp-fwdauth
+  namespace: dhcp
+spec:
+  forwardAuth:
+    address: http://echo-server.default:8080

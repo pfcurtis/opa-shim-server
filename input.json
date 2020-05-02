@@ -1,0 +1,6 @@
+{
+  "input": {
+    "method": "GET",
+    "X-Forwarded-Uri": ["curtis","dhcp"]
+  }
+}

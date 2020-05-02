@@ -1,0 +1,11 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: dhcp-opa
+  namespace: dhcp
+spec:
+  chain:
+    middlewares:
+    - name: dhcp-fwdauth
+    - name: dhcp-stripprefix
+---
