@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-# Reflects the requests from HTTP methods GET, POST, PUT, and DELETE
-# Written by Nathan Hamiel (2010)
+#!/usr/bin/env python3
 
 import os, json, urllib3
 import http.server
@@ -12,7 +10,10 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
  
         data = {}
         data[opa_input_object] = {}
-        data[opa_input_object]['request_path'] = self.path.strip("/").split("/")
+        try:
+            data[opa_input_object]['request_path'] = self.path.strip("/").split("/")
+        except:
+            pass
 
         for hdr in self.headers.keys():
           if (hdr == opa_path_header):
@@ -24,8 +25,21 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 #       print(json.dumps(data))
 #       print("--------\n")
 
-        opa = http.request("POST",opa_url, headers={'Content-Type': 'application/json'}, body=json.dumps(data))
-        resp = json.loads(opa.data.decode('utf-8'))['result']
+        try:
+            opa = http.request("POST",opa_url, headers={'Content-Type': 'application/json'}, body=json.dumps(data))
+        except:
+            self.send_response(403,"Unauthorized")
+            self.end_headers()
+            self.wfile.write(b"Access Denied. Failed to contact policy server.\n")
+            return
+
+        try:
+            resp = json.loads(opa.data.decode('utf-8'))['result']
+        except:
+            self.send_response(403,"Unauthorized")
+            self.end_headers()
+            self.wfile.write(b"Access Denied. Failed to decode policy server response\n")
+            return
 
 #       print(json.dumps(resp))
 #       print("++++++++\n")
@@ -37,11 +51,11 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         else:
           self.send_response(403,"Unauthorized")
           self.end_headers()
-          self.wfile.write(b"Denied\n")
+          self.wfile.write(b"Access Denied. Policy does not allow access.\n")
         
 def main():
     print('Listening on :%s' % port)
-    server = socketserver.TCPServer(('', port), RequestHandler)
+    server = socketserver.ThreadingTCPServer(('', port), RequestHandler)
     server.serve_forever()
 
         
