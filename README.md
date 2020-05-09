@@ -12,3 +12,5 @@ This can be run as a pod on Kubernetes, a standalone container in a Docker envir
 Unix environment variables are used to configure the *Open Policy Agent* URL and other parameters. Sample Traefik chained 
 middleware YAML is provided.
 
+A sample of the JSON provided by Traefik via the `fwdauth` middleware is also provided to show the type of information that
+can be used for policies. A simple `example.rego` showing a single allow for a specific IP address is also included.
