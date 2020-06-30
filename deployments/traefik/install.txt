@@ -1,0 +1,3 @@
+Installed using Helm 3.x
+
+https://github.com/containous/traefik-helm-chart/tree/master/traefik
