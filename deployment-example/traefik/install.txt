@@ -1,0 +1,6 @@
+Installed using Helm 3.x
+
+https://github.com/containous/traefik-helm-chart/tree/master/traefik
+
+helm repo add traefik https://containous.github.io/traefik-helm-chart
+helm install traefik traefik/traefik
