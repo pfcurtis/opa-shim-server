@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: red-service
   namespace: webapp
 spec:
   type: ClusterIP
   selector:
-    app: frontend
+    app: red-server
   ports:
     - name: http
       port: 80

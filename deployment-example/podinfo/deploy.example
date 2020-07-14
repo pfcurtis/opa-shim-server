@@ -1,30 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: red
+  name: red-server
   namespace: webapp
+  labels:
+    app: red-server
 spec:
-  minReadySeconds: 3
-  revisionHistoryLimit: 5
-  progressDeadlineSeconds: 60
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 0
-    type: RollingUpdate
   selector:
     matchLabels:
-      app: frontend
+      app: red-server
+  replicas: 1
   template:
     metadata:
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9797"
       labels:
-        app: frontend
+        app: red-server
+      name: red-server
     spec:
-      serviceAccountName: webapp
       containers:
-      - name: frontend
+      - name: podinfo-red-server
         image: stefanprodan/podinfo:4.0.6
         imagePullPolicy: IfNotPresent
         ports:
@@ -71,3 +64,11 @@ spec:
           requests:
             cpu: 100m
             memory: 32Mi
+  minReadySeconds: 3
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+
