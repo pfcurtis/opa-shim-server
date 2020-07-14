@@ -4,7 +4,7 @@ metadata:
   name: opa-shim-server
   namespace: opa
   labels:
-    app: opa
+    app: opa-shim-server
 spec:
   selector:
     app: opa-shim-server
@@ -19,7 +19,7 @@ metadata:
   name: opa-shim-server
   namespace: opa
   labels:
-    app: opa
+    app: opa-shim-server
 spec:
   selector:
     matchLabels:
@@ -33,8 +33,10 @@ spec:
     spec:
       containers:
       - name: opa-shim-server
-        image: /opa-shim-server:35ae5ce
+        image: pfcurtis/opa-shim-server:7fb8b66
         ports:
         - name: test-port
           containerPort: 8080
-
+        env:
+        - name: "OPA_URL"
+          value: "http://opa.opa:8181/v1/data/example"
