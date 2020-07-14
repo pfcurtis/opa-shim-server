@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: red
   namespace: webapp
 spec:
   minReadySeconds: 3
@@ -45,7 +45,7 @@ spec:
         - --backend-url=http://backend:9898/echo
         env:
         - name: PODINFO_UI_COLOR
-          value: "#34577c"
+          value: "red"
         livenessProbe:
           exec:
             command:
@@ -71,4 +71,3 @@ spec:
           requests:
             cpu: 100m
             memory: 32Mi
-
