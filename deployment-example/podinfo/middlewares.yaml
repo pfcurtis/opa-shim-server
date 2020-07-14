@@ -5,7 +5,7 @@ metadata:
   namespace: webapp
 spec:
   forwardAuth:
-    address: http://opa-shim-server.www:8080
+    address: http://opa-shim-server.opa:8080
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
