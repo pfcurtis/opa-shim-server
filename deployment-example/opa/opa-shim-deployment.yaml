@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: opa-shim-server
-        image: pfcurtis/opa-shim-server:7fb8b66
+        image: pfcurtis/opa-shim-server:dc16931
         ports:
         - name: test-port
           containerPort: 8080

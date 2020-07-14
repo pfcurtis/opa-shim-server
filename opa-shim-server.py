@@ -21,9 +21,10 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
           else:
             data[opa_input_object][hdr] = self.headers.get(hdr)
 
-#       print("OPA Data Sent:\n")
-#       print(json.dumps(data))
-#       print("--------\n")
+        if (opa_debug == "True"):
+          print("OPA Data Sent:\n")
+          print(json.dumps(data))
+          print("--------\n")
 
         try:
             opa = http.request("POST",opa_url, headers={'Content-Type': 'application/json'}, body=json.dumps(data))
@@ -41,8 +42,9 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(b"Access Denied. Failed to decode policy server response\n")
             return
 
-#       print(json.dumps(resp))
-#       print("++++++++\n")
+        if (opa_debug == "True"):
+          print(json.dumps(resp))
+          print("++++++++\n")
 
         if (resp[opa_allow_attribute]):
           self.send_response(200,"OK")
@@ -67,6 +69,7 @@ if __name__ == "__main__":
     opa_input_object = os.environ.get('OPA_INPUT_OBJECT','input')
     opa_path_header = os.environ.get('OPA_PATH_HEADER','X-Forwarded-Uri')
     opa_allow_attribute = os.environ.get('OPA_ALLOW_ATTRIBUTE','allow')
+    opa_debug = os.environ.get('OPA_DEBUG','False')
 
     http = urllib3.PoolManager()
 
