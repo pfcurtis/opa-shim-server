@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: red
   namespace: webapp
+  labels:
+    app: red
 spec:
   minReadySeconds: 3
   revisionHistoryLimit: 5
@@ -13,7 +15,7 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: frontend
+      app: red
   template:
     metadata:
       annotations:
@@ -76,6 +78,8 @@ kind: Deployment
 metadata:
   name: green
   namespace: webapp
+  labels:
+    app: green
 spec:
   minReadySeconds: 3
   revisionHistoryLimit: 5
@@ -86,7 +90,7 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: frontend
+      app: green
   template:
     metadata:
       annotations:
@@ -149,6 +153,8 @@ kind: Deployment
 metadata:
   name: blue
   namespace: webapp
+  labels:
+    app: blue
 spec:
   minReadySeconds: 3
   revisionHistoryLimit: 5
@@ -159,7 +165,7 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: frontend
+      app: blue
   template:
     metadata:
       annotations:
