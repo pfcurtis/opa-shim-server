@@ -40,3 +40,5 @@ spec:
         env:
         - name: "OPA_URL"
           value: "http://opa.opa:8181/v1/data/example"
+        - name: "OPA_DEBUG"
+          value: "True"
