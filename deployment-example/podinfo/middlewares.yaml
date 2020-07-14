@@ -1,0 +1,32 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: webapp-fwdauth
+  namespace: webapp
+spec:
+  forwardAuth:
+    address: http://opa-shim-server.www:8080
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: red-stripprefix
+  namespace: webapp
+spec:
+  stripPrefix:
+    prefixes:
+      - /foo
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: red-chain
+  namespace: webapp
+  labels:
+    app: red-server
+spec:
+  chain:
+    middlewares:
+    - name: webapp-fwdauth
+    - name: red-stripprefix
+

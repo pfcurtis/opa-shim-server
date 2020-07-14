@@ -9,7 +9,7 @@ spec:
     app: red-server
   ports:
     - name: http
-      port: 80
+      port: 9898
       protocol: TCP
       targetPort: http
 
@@ -25,7 +25,7 @@ spec:
     app: green-server
   ports:
     - name: http
-      port: 80
+      port: 9898
       protocol: TCP
       targetPort: http
 
@@ -41,7 +41,7 @@ spec:
     app: blue-server
   ports:
     - name: http
-      port: 80
+      port: 9898
       protocol: TCP
       targetPort: http
 
