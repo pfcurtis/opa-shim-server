@@ -10,10 +10,47 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: Host(`a13becbaa050c42d2a063ca8a63d77cf-1908540072.us-east-2.elb.amazonaws.com`) && PathPrefix(`/foo`)
+    match: Host(`a13becbaa050c42d2a063ca8a63d77cf-1908540072.us-east-2.elb.amazonaws.com`) && PathPrefix(`/foo/bar`)
     middlewares:
     - name: red-chain
     services:
     - name: red-service
       port: 9898
-
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: green-server
+  namespace: webapp
+  labels:
+    app: green-server
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`a13becbaa050c42d2a063ca8a63d77cf-1908540072.us-east-2.elb.amazonaws.com`) && PathPrefix(`/foo`)
+    middlewares:
+    - name: green-chain
+    services:
+    - name: green-service
+      port: 9898
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: blue-server
+  namespace: webapp
+  labels:
+    app: blue-server
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`a13becbaa050c42d2a063ca8a63d77cf-1908540072.us-east-2.elb.amazonaws.com`) && PathPrefix(`/blue`)
+    middlewares:
+    - name: blue-chain
+    services:
+    - name: blue-service
+      port: 9898

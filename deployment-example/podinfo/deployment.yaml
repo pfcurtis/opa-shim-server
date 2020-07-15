@@ -115,6 +115,9 @@ spec:
         env:
         - name: PODINFO_UI_COLOR
           value: "green"
+        - name: PODINFO_UI_LOGO
+          value: "https://github.com/pfcurtis/opa-shim-server/raw/master/deployment-example/podinfo/ww-logo.png"
+
         livenessProbe:
           exec:
             command:
@@ -190,6 +193,8 @@ spec:
         env:
         - name: PODINFO_UI_COLOR
           value: "blue"
+        - name: PODINFO_UI_LOGO
+          value: "https://github.com/pfcurtis/opa-shim-server/raw/master/deployment-example/podinfo/ww-logo.png"
         livenessProbe:
           exec:
             command:

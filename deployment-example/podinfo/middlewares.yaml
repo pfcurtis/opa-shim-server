@@ -29,4 +29,49 @@ spec:
     middlewares:
     - name: webapp-fwdauth
     - name: red-stripprefix
-
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: green-stripprefix
+  namespace: webapp
+spec:
+  stripPrefix:
+    prefixes:
+      - /foo
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: green-chain
+  namespace: webapp
+  labels:
+    app: green-server
+spec:
+  chain:
+    middlewares:
+    - name: webapp-fwdauth
+    - name: green-stripprefix
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: blue-stripprefix
+  namespace: webapp
+spec:
+  stripPrefix:
+    prefixes:
+      - /bar
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: blue-chain
+  namespace: webapp
+  labels:
+    app: blue-server
+spec:
+  chain:
+    middlewares:
+    - name: webapp-fwdauth
+    - name: blue-stripprefix
