@@ -40,7 +40,7 @@ spec:
         - name: PODINFO_UI_COLOR
           value: "red"
         - name: PODINFO_UI_PATH
-          value: "/foo"
+          value: "/foo/"
         livenessProbe:
           exec:
             command:
