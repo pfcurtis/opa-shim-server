@@ -1,3 +1,6 @@
+
+# A simple allow all GET requests from anywhere
+
 package example
 
 import input
