@@ -39,7 +39,7 @@ spec:
         - name: PODINFO_UI_COLOR
           value: "red"
         - name: PODINFO_UI_LOGO
-          value: "https://github.com/pfcurtis/opa-shim-server/raw/master/deployment-example/podinfo/ww-logo.png"
+          value: "https://github.com/pfcurtis/opa-shim-server/raw/master/deployment-example/podinfo/traefik.logo.png"
         livenessProbe:
           exec:
             command:
