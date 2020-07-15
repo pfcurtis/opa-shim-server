@@ -48,7 +48,7 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: Host(`a13becbaa050c42d2a063ca8a63d77cf-1908540072.us-east-2.elb.amazonaws.com`) && PathPrefix(`/blue`)
+    match: Host(`a13becbaa050c42d2a063ca8a63d77cf-1908540072.us-east-2.elb.amazonaws.com`) && PathPrefix(`/bar`)
     middlewares:
     - name: blue-chain
     services:
