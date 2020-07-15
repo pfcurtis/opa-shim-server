@@ -35,10 +35,11 @@ spec:
         - --port=9898
         - --port-metrics=9797
         - --level=info
-        - --backend-url=http://backend:9898/echo
         env:
         - name: PODINFO_UI_COLOR
           value: "red"
+        - name: PODINFO_UI_LOGO
+          value: "https://github.com/pfcurtis/opa-shim-server/raw/master/deployment-example/podinfo/ww-logo.png"
         livenessProbe:
           exec:
             command:
