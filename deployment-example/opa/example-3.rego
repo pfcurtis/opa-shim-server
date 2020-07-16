@@ -15,7 +15,7 @@ allow {
 allow {
   input["X-Forwarded-Uri"] == ["foo"]
   count(input["X-Forwarded-Uri"]) == 1
-  input["X-Forwarded-Method"] == ["GET"]
+  input["X-Forwarded-Method"] == "GET"
 }
 
 allow {
