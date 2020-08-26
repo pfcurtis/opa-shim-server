@@ -18,6 +18,12 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         for hdr in self.headers.keys():
           if (hdr == opa_path_header):
             data[opa_input_object][hdr] = self.headers.get(hdr).strip("/").split("/")
+          elif (hdr == "Cookie"):
+            for item in self.headers.get("Cookie").split(";"):
+              n = item.index("=")
+              k = item[0:n].strip()
+              v = item[n + 1:].strip()
+              data[opa_input_object][k] = v
           else:
             data[opa_input_object][hdr] = self.headers.get(hdr)
 
