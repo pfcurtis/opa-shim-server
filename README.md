@@ -1,5 +1,9 @@
 # opa-shim-server
 
+*UPDATE MAY, 2021* This method will still work, but I highly recommend you utilize the OPA plugin documented here: https://github.com/team-carepay/traefik-opa-plugin. It is a much cleaner and supported method to applying OPA policies to all routes in Traefik.
+
+
+
 A Proof of Concept to enable OPA policies for traefik without anything but standard Traefik middlewares.
 
 The application `ops-shim-server.py` listens for `fwdauth` requests from the standard Traefik v2.0 forward auth middleware. It
