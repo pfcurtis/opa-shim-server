@@ -1,6 +1,6 @@
 # opa-shim-server
 
-*UPDATE MAY, 2021* This method will still work, but I highly recommend you utilize the OPA plugin documented here: https://github.com/team-carepay/traefik-opa-plugin. It is a much cleaner and supported method to applying OPA policies to all routes in Traefik.
+_*UPDATE MAY, 2021*_ This method will still work, but I highly recommend you utilize the OPA plugin documented here: https://github.com/team-carepay/traefik-opa-plugin. It is a much cleaner and supported method to applying OPA policies to all routes in Traefik.
 
 
 
